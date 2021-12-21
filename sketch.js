@@ -86,7 +86,16 @@ function draw() {
       
       //score increase
       score=score+Math.round(getFrameRate()/60)
-      }
+
+      if(BallGroup.isTouching(Robot)){
+        GameOver.visible=true;
+        GameContinue.visible=true;
+        yes.visible=true;
+        no.visible=true;
+    }
+
+   
+    }
 
       if(Gamestate===end){
           ground.velocityX=0;
@@ -98,21 +107,20 @@ function draw() {
           no.visible=true;
         
           Robot.velocityY=0;
+
+
+          if(mousePressedOver(yes)){
+            reset();
+          }
         }
    
 
  
-    if(BallGroup.isTouching(Robot)){
-        GameOver.visible=true;
-        GameContinue.visible=true;
-        yes.visible=true;
-        no.visible=true;
-    }
+   
 
-    if(mousePressedOver(yes)){
-     reset();
+   
 
-}
+
     Robot.collide(invisground);
     drawSprites();
 
